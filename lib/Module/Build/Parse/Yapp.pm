@@ -53,6 +53,17 @@ sub _make_parser {
 
 1;
 
+=head1 SYNOPSIS
+
+    use Module::Build;
+    my $build = Module::Build::Parse::Yapp->new
+        (
+            module_name => 'Foo::Bar',
+            ...other stuff here...
+        );
+    $build->add_build_element('yp');
+    $build->create_build_script;
+
 =head1 SEE ALSO
 
 perl(1), Module::Build(3), Parse::Yapp(3)

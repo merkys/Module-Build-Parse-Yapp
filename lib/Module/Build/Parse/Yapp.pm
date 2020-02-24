@@ -58,7 +58,7 @@ __END__
 
 =head1 SYNOPSIS
 
-    use Module::Build;
+    use Module::Build::Parse::Yapp;
     my $build = Module::Build::Parse::Yapp->new
         (
             module_name => 'Foo::Bar',

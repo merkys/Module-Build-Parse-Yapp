@@ -8,7 +8,7 @@ use File::Temp;
 use Module::Build::Parse::Yapp;
 use Test::Simple tests => 1;
 
-my $tempdir = File::Temp::tempdir( DIR => 't', CLEANUP => 1 );
+my $tempdir = File::Temp::tempdir( CLEANUP => 1 );
 
 my $inputfile  = File::Spec->catdir( $tempdir, 'bfck.yp' );
 my $outputfile = File::Spec->catdir( $tempdir, 'bfck.pm' );

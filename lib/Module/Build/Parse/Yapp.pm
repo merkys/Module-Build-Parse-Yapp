@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'Module::Build';
 
+# ABSTRACT: builds Parse::Yapp parsers from source
+
 use File::Find;
 use File::Spec::Functions;
 use Parse::Yapp;

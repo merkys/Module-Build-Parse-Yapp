@@ -54,6 +54,8 @@ sub _make_parser {
 
 1;
 
+__END__
+
 =head1 SYNOPSIS
 
     use Module::Build;
@@ -64,6 +66,17 @@ sub _make_parser {
         );
     $build->add_build_element('yp');
     $build->create_build_script;
+
+=head1 DESCRIPTION
+
+Module::Build::Parse::Yapp is a subclass of L<Module::Build|Module::Build>
+made to build L<Parse::Yapp|Parse::Yapp> parsers from the source. Thus,
+prebuilt parsers do not have to be included in the source distribution.
+
+Module::Build::Parse::Yapp looks for *.yp files under B<'lib'> and produces
+Perl modules in place of them under B<'blib/lib'>. Therefore, a grammar file
+B<'lib/A/B/C.yp'> will be converted to B<'blib/lib/A/B/C.pm'> with a package
+name of B<'A::B::C'>.
 
 =head1 SEE ALSO
 

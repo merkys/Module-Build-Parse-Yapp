@@ -23,8 +23,6 @@ sub process_yp_files {
 sub _find_parser {
     return unless /\.yp$/;
 
-    my $parser = Parse::Yapp->new( inputfile => $File::Find::name );
-
     my $pmfile = $_;
     $pmfile =~ s/\.yp$/.pm/;
 
@@ -37,8 +35,17 @@ sub _find_parser {
     shift @namespace;
     $namespace[-1] =~ s/\.yp$//;
 
-    open( my $out, '>', File::Spec->catdir( @pmpath ) );
-    print $out $parser->Output( classname => join '::', @namespace );
+    _make_parser( $File::Find::name,
+                  File::Spec->catdir( @pmpath ),
+                  join '::', @namespace );
+}
+
+sub _make_parser {
+    my( $inputfile, $outputfile, $classname ) = @_;
+
+    my $parser = Parse::Yapp->new( inputfile => $inputfile );
+    open( my $out, '>', $outputfile );
+    print $out $parser->Output( classname => $classname );
     close $out;
 }
 

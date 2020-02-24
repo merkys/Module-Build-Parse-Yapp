@@ -5,7 +5,7 @@ use warnings;
 use base 'Module::Build';
 
 use File::Find;
-use File::Spec;
+use File::Spec::Functions;
 use Parse::Yapp;
 
 sub new {
@@ -26,7 +26,7 @@ sub _find_parser {
     my $pmfile = $_;
     $pmfile =~ s/\.yp$/.pm/;
 
-    my @path = File::Spec->splitdir( $File::Find::name );
+    my @path = splitdir( $File::Find::name );
     my @pmpath = my @namespace = @path;
 
     unshift @pmpath, 'blib';
@@ -36,7 +36,7 @@ sub _find_parser {
     $namespace[-1] =~ s/\.yp$//;
 
     _make_parser( $File::Find::name,
-                  File::Spec->catdir( @pmpath ),
+                  catdir( @pmpath ),
                   join '::', @namespace );
 }
 

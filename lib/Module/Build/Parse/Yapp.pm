@@ -17,22 +17,27 @@ sub new {
 sub process_yp_files {
     my $self = shift;
 
-    find( { wanted => \&_find_parser }, 'lib' );
+    find( { wanted => \&_find_parser, no_chdir => 1 }, 'lib' );
 }
 
 sub _find_parser {
     return unless /\.yp$/;
 
-    my $parser = Parse::Yapp->new( inputfile => $_ );
+    my $parser = Parse::Yapp->new( inputfile => $File::Find::name );
 
     my $pmfile = $_;
     $pmfile =~ s/\.yp$/.pm/;
 
-    my @namespace = File::Spec->splitdir( $File::Find::name );
+    my @path = File::Spec->splitdir( $File::Find::name );
+    my @pmpath = my @namespace = @path;
+
+    unshift @pmpath, 'blib';
+    $pmpath[-1] =~ s/\.yp$/.pm/;
+
     shift @namespace;
     $namespace[-1] =~ s/\.yp$//;
 
-    open( my $out, '>', $pmfile );
+    open( my $out, '>', File::Spec->catdir( @pmpath ) );
     print $out $parser->Output( classname => join '::', @namespace );
     close $out;
 }

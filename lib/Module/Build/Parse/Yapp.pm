@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base 'Module::Build';
 
-# ABSTRACT: builds Parse::Yapp parsers from source
+# ABSTRACT: build Parse::Yapp parsers from source
 
 use File::Find;
 use File::Spec::Functions;
@@ -52,3 +52,23 @@ sub _make_parser {
 }
 
 1;
+
+=head1 NAME
+
+Module::Build::Parse::Yapp - build Parse::Yapp parsers from source
+
+=head1 AUTHOR
+
+Andrius Merkys <merkys@cpan.org>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2020 Andrius Merkys
+
+This is free software, licensed under the three-clause BSD License.
+
+=head1 SEE ALSO
+
+perl(1), Module::Build(3), Parse::Yapp(3)
+
+=cut

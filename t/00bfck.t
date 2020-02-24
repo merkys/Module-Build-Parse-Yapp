@@ -3,15 +3,15 @@
 use strict;
 use warnings;
 
-use File::Spec;
-use File::Temp;
+use File::Spec::Functions;
+use File::Temp qw( tempdir );
 use Module::Build::Parse::Yapp;
 use Test::Simple tests => 1;
 
-my $tempdir = File::Temp::tempdir( CLEANUP => 1 );
+my $tempdir = tempdir( CLEANUP => 1 );
 
-my $inputfile  = File::Spec->catdir( $tempdir, 'bfck.yp' );
-my $outputfile = File::Spec->catdir( $tempdir, 'bfck.pm' );
+my $inputfile  = catdir( $tempdir, 'bfck.yp' );
+my $outputfile = catdir( $tempdir, 'bfck.pm' );
 
 open( my $yp, '>', $inputfile );
 print $yp <<END;

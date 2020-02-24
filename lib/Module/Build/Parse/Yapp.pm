@@ -8,7 +8,7 @@ use base 'Module::Build';
 # ABSTRACT: build Parse::Yapp parsers from source
 
 use File::Find;
-use File::Spec::Functions;
+use File::Spec::Functions qw( catdir splitdir );
 use Parse::Yapp;
 
 sub new {

@@ -8,6 +8,7 @@ use base 'Module::Build';
 # ABSTRACT: build Parse::Yapp parsers from source
 
 use File::Find;
+use File::Path qw( make_path );
 use File::Spec::Functions qw( catdir splitdir );
 use Parse::Yapp;
 
@@ -38,6 +39,7 @@ sub _find_parser {
     shift @namespace;
     $namespace[-1] =~ s/\.yp$//;
 
+    make_path( catdir( @pmpath[0..$#pmpath-1] ) );
     _make_parser( $File::Find::name,
                   catdir( @pmpath ),
                   join '::', @namespace );
